@@ -1,5 +1,14 @@
 version: "2.1"
 
+networks:
+  oracle:
+    name: oracle
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/24
+        
 services:
   jackett:
     image: lscr.io/linuxserver/jackett:latest
@@ -15,8 +24,8 @@ services:
       - 9117:9117
     restart: always
     networks:
-      bridge:
-        ipv4_address: 172.17.0.10
+      oracle:
+        ipv4_address: 10.0.0.10
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
@@ -31,6 +40,8 @@ services:
     ports:
       - 8989:8989
     restart: no
+    networks:
+      - oracle
 
   radarr:
     image: lscr.io/linuxserver/radarr:latest
@@ -45,3 +56,5 @@ services:
     ports:
       - 7878:7878
     restart: no
+        networks:
+      - oracle
