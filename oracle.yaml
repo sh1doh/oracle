@@ -8,7 +8,7 @@ networks:
       driver: default
       config:
         - subnet: 10.0.0.0/24
-        
+
 services:
   jackett:
     image: lscr.io/linuxserver/jackett:latest
@@ -41,7 +41,7 @@ services:
       - 8989:8989
     restart: no
     networks:
-      - oracle
+      oracle:
 
   radarr:
     image: lscr.io/linuxserver/radarr:latest
@@ -56,5 +56,5 @@ services:
     ports:
       - 7878:7878
     restart: no
-        networks:
-      - oracle
+    networks:
+      oracle:
