@@ -22,7 +22,7 @@ services:
       - /data/jackett/config:/config
     ports:
       - 9117:9117
-    restart: always
+    restart: unless-stopped
     networks:
       oracle:
         ipv4_address: 10.0.0.10
@@ -39,7 +39,7 @@ services:
       - /usb1:/usb1
     ports:
       - 8989:8989
-    restart: no
+    restart: unless-stopped
     networks:
       oracle:
 
@@ -55,7 +55,7 @@ services:
       - /usb1:/usb1
     ports:
       - 7878:7878
-    restart: no
+    restart: unless-stopped
     networks:
       oracle:
 
@@ -63,6 +63,21 @@ services:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    restart: always
+    networks:
+      oracle:
+
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      - PUID=33679
+      - PGID=33679
+      - TZ=Europe/Kiev
+    volumes:
+      - /data/duplicati/config:/config
+      - /data:/source
+    ports:
+      - 8200:8200
+    restart: unless-stopped
     networks:
       oracle:
