@@ -58,3 +58,11 @@ services:
     restart: no
     networks:
       oracle:
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    networks:
+      oracle:
