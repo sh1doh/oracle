@@ -81,3 +81,19 @@ services:
     restart: unless-stopped
     networks:
       oracle:
+
+  heimdall:
+    image: lscr.io/linuxserver/heimdall:latest
+    container_name: heimdall
+    environment:
+      - PUID=33679
+      - PGID=33679
+      - TZ=Europe/Kiev
+    volumes:
+      - /data/heimdall/config:/config
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    networks:
+      oracle:
