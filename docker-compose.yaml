@@ -7,7 +7,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 10.0.0.0/24
+        - subnet: 10.10.10.0/24
 
 services:
   jackett:
@@ -25,7 +25,7 @@ services:
     restart: unless-stopped
     networks:
       oracle:
-        ipv4_address: 10.0.0.10
+        ipv4_address: 10.10.10.10
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
