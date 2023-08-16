@@ -39,7 +39,7 @@ services:
       - /usb1:/usb1
     ports:
       - 8989:8989
-    restart: unless-stopped
+    restart: no
     networks:
       oracle:
 
@@ -55,7 +55,7 @@ services:
       - /usb1:/usb1
     ports:
       - 7878:7878
-    restart: unless-stopped
+    restart: no
     networks:
       oracle:
 
@@ -99,7 +99,7 @@ services:
       oracle:
 
   yacht:
-    image: lscr.io/linuxserver/heimdall:latest
+    image: selfhostedpro/yacht
     container_name: yacht
     environment:
       - PUID=33679
