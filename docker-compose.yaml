@@ -99,3 +99,19 @@ services:
     restart: unless-stopped
     networks:
       oracle:
+
+  yacht:
+    image: selfhostedpro/yacht
+    container_name: yacht
+    environment:
+      - PUID=33679
+      - PGID=33679
+      - TZ=Europe/Kiev
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /data/yacht/config:/config
+    ports:
+      - 8000:8000
+    restart: unless-stopped
+    networks:
+      oracle:
